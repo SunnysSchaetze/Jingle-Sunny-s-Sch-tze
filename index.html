@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Sunny's kleiner Jingle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #FFA500;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      white-space: nowrap;
+      animation: rainbowText 5s ease-in-out infinite;
+    }
+
+    button {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 15px 30px;
+      background-color: #FFA500;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+      transition: all 0.5s ease;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+    }
+
+    button:hover {
+      animation: rainbow 5s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 30px rgba(255, 165, 0, 1);
+      transform: scale(1.1);
+      color: #000;
+    }
+
+    @keyframes rainbowText {
+      0% { color: #FF0000; }
+      16% { color: #FF7F00; }
+      32% { color: #FFFF00; }
+      48% { color: #00FF00; }
+      64% { color: #0000FF; }
+      80% { color: #4B0082; }
+      100% { color: #8B00FF; }
+    }
+
+    @keyframes rainbow {
+      0% { background-color: #FF0000; }
+      16% { background-color: #FF7F00; }
+      32% { background-color: #FFFF00; }
+      48% { background-color: #00FF00; }
+      64% { background-color: #0000FF; }
+      80% { background-color: #4B0082; }
+      100% { background-color: #8B00FF; }
+    }
+
+    audio { display: none; }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 1.5em; }
+      button { font-size: 1em; padding: 12px 25px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 Sunny's kleiner Jingle 🎶</h1>
+  
+  <!-- Play Button (Optional, weil es automatisch abgespielt wird) -->
+  <button onclick="document.getElementById('audio').play()">🔊 Play Now</button>
+  
+  <!-- Audio Tag mit Autoplay -->
+  <audio id="audio" autoplay>
+    <source src="audio.aac" type="audio/aac">
+  </audio>
+</body>
+</html>
