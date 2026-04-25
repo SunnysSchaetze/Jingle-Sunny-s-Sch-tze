@@ -26,13 +26,11 @@
       animation: rainbowText 5s ease-in-out infinite;
     }
 
-    /* 🎶 Emoji Style */
     .emoji {
       display: inline-block;
       animation: glowRGB 3s linear infinite, dance 2s ease-in-out infinite;
     }
 
-    /* RGB Glow */
     @keyframes glowRGB {
       0%   { text-shadow: 0 0 10px red, 0 0 20px red; }
       16%  { text-shadow: 0 0 10px orange, 0 0 20px orange; }
@@ -43,7 +41,6 @@
       100% { text-shadow: 0 0 10px red, 0 0 20px red; }
     }
 
-    /* Tanz / Bewegung */
     @keyframes dance {
       0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
       25% { transform: translateY(-5px) rotate(-10deg) scale(1.1); }
@@ -109,11 +106,26 @@
     <span class="emoji">🎶</span>
   </h1>
 
-  <button onclick="document.getElementById('audio').play()">🔊 Play Now</button>
+  <button id="playPauseBtn">🔊 Play Now</button>
 
-  <audio id="audio" autoplay>
+  <audio id="audio">
     <source src="audio.aac" type="audio/aac">
   </audio>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const btn = document.getElementById('playPauseBtn');
+
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "⏸️ Pause";
+      } else {
+        audio.pause();
+        btn.textContent = "🔊 Play Now";
+      }
+    });
+  </script>
 
 </body>
 </html>
