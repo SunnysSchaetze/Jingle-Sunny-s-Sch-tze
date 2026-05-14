@@ -32,7 +32,7 @@
         .category-container {
             font-size: 1.2em;
             margin-bottom: 20px;
-            color: #ff7f00; /* Kategorie-Farbe */
+            color: #ff7f00;
         }
 
         .rgb-animated {
@@ -56,7 +56,6 @@
             margin: 0 5px;
         }
 
-        /* RGB Button Hintergrund */
         @keyframes rainbowBG {
             0%   { background-color: #FF0000; }
             16%  { background-color: #FF7F00; }
@@ -71,14 +70,14 @@
             font-size: 1em;
             font-weight: bold;
             padding: 10px 25px;
-            color: #000; /* Text schwarz */
+            color: #000;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             max-width: 250px;
             transition: all 0.5s ease;
-            background-color: #FFA500; /* Startfarbe */
+            background-color: #FFA500;
             box-shadow: 0 0 8px rgba(255, 165, 0, 0.8);
         }
 
@@ -88,7 +87,8 @@
 
         button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 16px rgba(255, 165, 0, 1), 0 0 24px rgba(255, 165, 0, 1);
+            box-shadow: 0 0 16px rgba(255, 165, 0, 1),
+                        0 0 24px rgba(255, 165, 0, 1);
         }
 
         @keyframes glowRGB {
@@ -102,10 +102,18 @@
         }
 
         @keyframes dance {
-            0%, 100%   { transform: translateY(0) rotate(0deg) scale(1); }
-            25%        { transform: translateY(-4px) rotate(-8deg) scale(1.05); }
-            50%        { transform: translateY(4px) rotate(8deg) scale(1.1); }
-            75%        { transform: translateY(-4px) rotate(-4deg) scale(1.05); }
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-4px) rotate(-8deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(4px) rotate(8deg) scale(1.1);
+            }
+            75% {
+                transform: translateY(-4px) rotate(-4deg) scale(1.05);
+            }
         }
 
         @keyframes rainbowText {
@@ -119,10 +127,23 @@
         }
 
         @media (max-width: 500px) {
-            .title-container { font-size: 1.3em; }
-            .category-container { font-size: 1em; }
-            .arrow { font-size: 1.1em; margin: 0 5px; }
-            button { font-size: 0.9em; padding: 8px 20px; }
+            .title-container {
+                font-size: 1.3em;
+            }
+
+            .category-container {
+                font-size: 1em;
+            }
+
+            .arrow {
+                font-size: 1.1em;
+                margin: 0 5px;
+            }
+
+            button {
+                font-size: 0.9em;
+                padding: 8px 20px;
+            }
         }
 
         audio {
@@ -131,32 +152,76 @@
     </style>
 </head>
 <body>
+
     <div class="title-container">
         <span class="arrow rgb-animated" id="prev">⬅️</span>
+
         <span class="emoji">🎶</span>
-        <span id="songTitle" class="rgb-animated">Sunny's Songs</span>
+
+        <span id="songTitle" class="rgb-animated">
+            Sunny's Songs
+        </span>
+
         <span class="emoji">🎶</span>
+
         <span class="arrow rgb-animated" id="next">➡️</span>
     </div>
 
     <div class="category-container" id="songCategory"></div>
 
-    <!-- Button zunächst verstecken -->
-    <button id="playPauseBtn" style="display: none;">🔊 Play Now</button>
+    <button id="playPauseBtn" style="display: none;">
+        🔊 Play Now
+    </button>
 
     <audio id="audio"></audio>
 
     <script>
         const songs = [
-            { title: "Der kleine Jingle", file: "Jingle.aac", category: "Sunny's Schätze" },
-            { title: "Cha-La Head-Cha-La", file: "Cha-La Head-Cha-La.aac", category: "Dragonball Z" },
-            { title: "Die Legende", file: "Die Legende.aac", category: "One Piece" },
-            { title: "Leb deinen Traum", file: "Leb deinen Traum.aac", category: "Digimon" },
-            { title: "Frei wie der Wind", file: "Frei wie der Wind.aac", category: "Monster Rancher" },
-            { title: "Last Unicorn", file: "Last Unicorn.aac", category: "Das Letzte Einhorn" }
+            {
+                title: "Der kleine Jingle",
+                file: "Jingle.aac",
+                category: "Sunny's Schätze"
+            },
+
+            {
+                title: "Cha-La Head-Cha-La",
+                file: "Cha-La Head-Cha-La.aac",
+                category: "Dragonball Z"
+            },
+
+            {
+                title: "Die Legende",
+                file: "Die Legende.aac",
+                category: "One Piece"
+            },
+
+            {
+                title: "Leb deinen Traum",
+                file: "Leb deinen Traum.aac",
+                category: "Digimon"
+            },
+
+            {
+                title: "Frei wie der Wind",
+                file: "Frei wie der Wind.aac",
+                category: "Monster Rancher"
+            },
+
+            {
+                title: "Last Unicorn",
+                file: "Last Unicorn.aac",
+                category: "Das Letzte Einhorn"
+            },
+
+            {
+                title: "Heidruns Schlaflied",
+                file: "Heidruns Schlaflied.aac",
+                category: "Dreamworks Dragons"
+            }
         ];
 
         let currentIndex = -1;
+
         const audio = document.getElementById('audio');
         const btn = document.getElementById('playPauseBtn');
         const songTitle = document.getElementById('songTitle');
@@ -166,26 +231,33 @@
 
         function loadSong(index) {
             currentIndex = index;
+
             const song = songs[index];
+
             audio.src = song.file;
+
             songTitle.textContent = song.title;
             songCategory.textContent = song.category;
+
             audio.pause();
 
-            // Button sichtbar machen, wenn ein Song geladen wird
             btn.style.display = "block";
             btn.disabled = false;
             btn.textContent = "🔊 Play Now";
-            btn.classList.remove('rgb-bg'); // Button zurücksetzen
+
+            btn.classList.remove('rgb-bg');
         }
 
         btn.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
+
                 btn.textContent = "⏸️ Pause";
-                btn.classList.add('rgb-bg'); // RGB-Animation startet beim ersten Klick
+
+                btn.classList.add('rgb-bg');
             } else {
                 audio.pause();
+
                 btn.textContent = "🔊 Play Now";
             }
         });
@@ -194,7 +266,9 @@
             if (currentIndex === -1) {
                 loadSong(songs.length - 1);
             } else {
-                loadSong((currentIndex - 1 + songs.length) % songs.length);
+                loadSong(
+                    (currentIndex - 1 + songs.length) % songs.length
+                );
             }
         });
 
@@ -202,9 +276,12 @@
             if (currentIndex === -1) {
                 loadSong(0);
             } else {
-                loadSong((currentIndex + 1) % songs.length);
+                loadSong(
+                    (currentIndex + 1) % songs.length
+                );
             }
         });
     </script>
+
 </body>
 </html>
