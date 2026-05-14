@@ -141,7 +141,8 @@
 
     <div class="category-container" id="songCategory"></div>
 
-    <button id="playPauseBtn" disabled>🔊 Play Now</button>
+    <!-- Button zunächst verstecken -->
+    <button id="playPauseBtn" style="display: none;">🔊 Play Now</button>
 
     <audio id="audio"></audio>
 
@@ -170,6 +171,9 @@
             songTitle.textContent = song.title;
             songCategory.textContent = song.category;
             audio.pause();
+
+            // Button sichtbar machen, wenn ein Song geladen wird
+            btn.style.display = "block";
             btn.disabled = false;
             btn.textContent = "🔊 Play Now";
             btn.classList.remove('rgb-bg'); // Button zurücksetzen
